@@ -1,0 +1,4 @@
+# Source all custom configurations
+for file in ~/.zsh/*.zsh; do
+    source "$file"
+done
