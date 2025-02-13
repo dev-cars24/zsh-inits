@@ -5,9 +5,6 @@ This repository contains modular Zsh configuration files for various functionali
 
 ## Files and Their Purpose
 
-### `cars24.zsh`
-- Contains aliases and functions specific to Cars24-related workflows.
-
 ### `colors.zsh`
 - Defines color variables for use in terminal outputs.
 
