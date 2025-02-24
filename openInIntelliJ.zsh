@@ -1,7 +1,5 @@
 source ~/.zsh/colors.zsh  # Load color definitions
 
-alias openInIdea='open_in_idea'
-
 function is_project_open() {
     local repo="$1"
     local idea_pid=$(pgrep -f "IntelliJ IDEA CE.app/Contents/MacOS/idea")

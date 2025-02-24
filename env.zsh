@@ -1,7 +1,5 @@
 export PATH="/opt/homebrew/opt/openjdk@17/bin:$PATH"
 
-alias fsfs="source ~/.zshrc"
-
 # automated or copied lines
 export NVM_DIR="$HOME/.nvm"
 [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm

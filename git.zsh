@@ -1,18 +1,6 @@
 source ~/.zsh/colors.zsh  # Load color definitions
 
-alias gbc='git branch --sort=-committerdate' # sort by last commit on a branch
-alias gs="git status"
-alias ga="git add ."
-alias gc="git commit -m"
-alias gps="git push"
-alias gpl="git pull"
-alias chk="git checkout"
-alias mas="git checkout master && git pull origin master"
-alias gb="git branch"
-alias glog="git log --oneline --graph --all"
-
 # undo commit
-alias uc='git reset --soft HEAD~1'
 function undo_commit() {
     current_branch=$(git symbolic-ref --short HEAD)
     if [ $? -ne 0 ]; then
@@ -32,7 +20,6 @@ function undo_commit() {
     fi
 }
 
-alias com_msg='last_commit_messages'
 function last_commit_messages() {
 
     if [ -z "$1" ]; then
@@ -46,7 +33,6 @@ function last_commit_messages() {
 }
 
 # push to remote
-alias jp='push_to_remote'
 function push_to_remote() {
 
     current_branch=$(git symbolic-ref --short HEAD)
@@ -204,7 +190,7 @@ function push_to_remote() {
     fi
 }
 
-alias b_c='create_branch'
+
 function create_branch() {
     if [ -z "$1" ]; then
         print -P "${RED}Usage: create_branch <ticket_number>${RESET}"
