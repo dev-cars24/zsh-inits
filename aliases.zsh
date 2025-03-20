@@ -16,6 +16,7 @@ alias uc='git reset --soft HEAD~1'
 alias com_msg='last_commit_messages'
 alias jp='push_to_remote'
 alias b_c='create_branch'
+alias chkk='git_branch_checkout'
 
 # k8s.zsh
 alias kl="kubectl logs"

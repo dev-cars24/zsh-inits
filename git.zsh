@@ -152,7 +152,7 @@ function push_to_remote() {
     done
 
     if [[ "$push_response" == "y" || "$push_response" == "Y" ]]; then
-        git push origin "$current_branch"
+        git push
         if [ $? -ne 0 ]; then
             print -P "${RED}Error: pushing current branch.${RESET}"
 
@@ -207,4 +207,42 @@ function create_branch() {
     else
         print -P "${RED}Failed to create a new branch '$full_branch_name'.${RESET}"
     fi
+}
+
+# Git Branch Navigator and Checkout Function with Exit Option
+function git_branch_checkout() {
+  # Check if we are in a git repository
+  if ! git rev-parse --git-dir > /dev/null 2>&1; then
+    echo "❌ Not inside a git repository!"
+    return 1
+  fi
+
+  # Fetch the list of branches and add an "EXIT" option
+  local branch
+  branch=$( (gbc \
+    | grep -v HEAD \
+    | sed 's/.* //' \
+    | sed 's#remotes/[^/]*/##' \
+    | sort -u ; echo "EXIT") \
+    | fzf --preview="git log -5 --oneline --color=always {}" \
+          --header="⬆️⬇️ Select a branch to checkout (or EXIT)" \
+          --prompt="Branch> " \
+          --height=15 \
+          --border)
+
+  # If no branch was selected (user pressed ESC or Ctrl+C), exit
+  if [[ -z "$branch" ]]; then
+    echo "⚠️  No branch selected. Exiting."
+    return 0
+  fi
+
+  # If the user selected EXIT, exit the function
+  if [[ "$branch" == "EXIT" ]]; then
+    echo "👋 Exiting without switching branches."
+    return 0
+  fi
+
+  # Checkout the selected branch
+  echo "🚀 Checking out branch: $branch"
+  git checkout "$branch"
 }
